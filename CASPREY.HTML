@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casprey Technology | Soluciones Tecnológicas Integrales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* CSS Optimizado - MOBILE FIRST */
+        :root {
+            --primary: #000000;          /* Negro Premium */
+            --secondary: #FF8A00;        /* Naranja Energético */
+            --accent: #00B4D8;           /* Azul Tecnológico */
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-light: #E9ECEF;
+            --gray: #6C757D;
+            --dark: #212529;
+            
+            --glass-bg: rgba(0, 0, 0, 0.75);
+            --glass-border: rgba(255, 138, 0, 0.2);
+            
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            font-size: 62.5%; /* 1rem = 10px */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            padding-top: 0;
+            overflow-x: hidden;
+            font-size: 1.6rem; /* 16px base */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== HEADER - MOBILE FIRST ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            z-index: 10001;
+        }
+
+        .logo-icon {
+            width: 5rem;
+            height: 5rem;
+            background: linear-gradient(135deg, var(--secondary), #FFAA00);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.4rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 5px 15px rgba(255, 138, 0, 0.3);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        /* Menú móvil por defecto */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 2rem;
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 9999;
+            gap: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links.active {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links li {
+            width: 100%;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .nav-links a {
+            display: block;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 2rem;
+            padding: 1.5rem;
+            position: relative;
+            transition: var(--transition);
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+            opacity: 1;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--secondary), #FFAA00);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: none; /* Oculto en móvil */
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 138, 0, 0.3);
+            font-size: 1.4rem;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2.8rem;
+            cursor: pointer;
+            padding: 0.8rem;
+            z-index: 10002;
+        }
+
+        /* ========== HERO SECTION - MOBILE FIRST ========== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll; /* Desactivar fixed en móvil */
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--white), #F0F0F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.4rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 32rem;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), #FFAA00);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(255, 138, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* ========== SECTIONS BASE - MOBILE FIRST ========== */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 6rem;
+            padding: 0 1.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8rem;
+            height: 0.4rem;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 0.2rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 100%;
+            margin: 2rem auto 0;
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+
+        /* ========== SERVICES - MOBILE FIRST ========== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+        }
+
+        .service-icon {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--white);
+            height: 10rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .service-content {
+            padding: 3rem;
+        }
+
+        .service-content h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-content p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 1.4rem;
+        }
+
+        /* ========== TEAM - MOBILE FIRST ========== */
+        .team-section {
+            background: linear-gradient(135deg, var(--light) 0%, #FFFFFF 100%);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0.5rem;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+        }
+
+        .team-icon {
+            width: 10rem;
+            height: 10rem;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        .team-card h3 {
+            color: var(--dark);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-position {
+            color: var(--secondary);
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* ========== ABOUT - MOBILE FIRST ========== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .about-text h2 {
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 30rem;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ========== PORTFOLIO - MOBILE FIRST ========== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-image {
+            height: 25rem;
+            overflow: hidden;
+        }
+
+        .portfolio-info {
+            padding: 3rem;
+        }
+
+        .portfolio-info h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .portfolio-info p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 1.4rem;
+        }
+
+        /* ========== CONTACT - MOBILE FIRST ========== */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1a1a 100%);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .contact-icon {
+            width: 6rem;
+            height: 6rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .contact-details p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.4rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-size: 1.4rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group textarea {
+            height: 15rem;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary), #FFAA00);
+            color: var(--white);
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* ========== FOOTER - MOBILE FIRST ========== */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 6rem 0 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .footer-logo-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .footer-logo-subtitle {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .footer-links h3,
+        .footer-services h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-links h3::after,
+        .footer-services h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5rem;
+            height: 0.3rem;
+            background: var(--secondary);
+        }
+
+        .footer-links ul,
+        .footer-services ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-links a,
+        .footer-services a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            padding: 0 1.5rem;
+        }
+
+        /* ========== BOTONES FLOTANTES ========== */
+        .admin-panel-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--secondary), #FFAA00);
+            color: var(--white);
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(255, 138, 0, 0.4);
+            z-index: 9999;
+            transition: var(--transition);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 9rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--white);
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 9998;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ================= MEDIA QUERIES - TABLET (≥ 768px) ================= */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 750px;
+                padding: 0 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .hero p {
+                font-size: 1.6rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .btn {
+                width: auto;
+                min-width: 25rem;
+            }
+            
+            .services-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                text-align: left;
+            }
+            
+            .footer-links a,
+            .footer-services a {
+                justify-content: flex-start;
+            }
+            
+            .footer-links h3::after,
+            .footer-services h3::after {
+                left: 0;
+                transform: none;
+            }
+            
+            .social-links {
+                justify-content: flex-start;
+            }
+            
+            .nav-links {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                backdrop-filter: none;
+                flex-direction: row;
+                justify-content: flex-end;
+                padding: 0;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                gap: 2rem;
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: auto;
+                margin: 0;
+            }
+            
+            .nav-links a {
+                display: inline-block;
+                font-size: 1.4rem;
+                padding: 0.5rem 0;
+                border-bottom: none;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .contact-btn {
+                display: inline-flex;
+            }
+            
+            .logo-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* ================= MEDIA QUERIES - PC (≥ 992px) ================= */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 970px;
+                padding: 0 4rem;
+            }
+            
+            .hero {
+                background-attachment: fixed;
+                text-align: left;
+            }
+            
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+            
+            .hero-content {
+                max-width: 80rem;
+            }
+            
+            .cta-buttons {
+                justify-content: flex-start;
+            }
+            
+            .section-title h2 {
+                font-size: 3.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .about-content {
+                gap: 8rem;
+            }
+            
+            .nav-links {
+                gap: 4rem;
+            }
+            
+            .logo-title {
+                font-size: 3.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ================= MEDIA QUERIES - PC GRANDE (≥ 1200px) ================= */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+                padding: 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 4rem;
+            }
+            
+            .services-grid,
+            .team-grid,
+            .portfolio-grid {
+                gap: 4rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                gap: 10rem;
+            }
+            
+            .nav-links {
+                gap: 5rem;
+            }
+        }
+
+        /* ================= ANIMACIONES Y EFECTOS ================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation-duration: 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        /* Efectos hover solo en desktop */
+        @media (min-width: 992px) {
+            .btn-primary:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(255, 138, 0, 0.4);
+            }
+            
+            .btn-secondary:hover {
+                background: var(--white);
+                color: var(--primary);
+                border-color: var(--white);
+            }
+            
+            .service-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            }
+            
+            .team-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            }
+            
+            .portfolio-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            }
+            
+            .about-image:hover img {
+                transform: scale(1.05);
+            }
+            
+            .social-links a:hover {
+                background: var(--secondary);
+                transform: translateY(-5px);
+            }
+            
+            .admin-panel-btn:hover {
+                transform: scale(1.1);
+            }
+            
+            .back-to-top:hover {
+                background: var(--secondary);
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Estilos de impresión */
+        @media print {
+            .admin-panel-btn,
+            .back-to-top,
+            .contact-btn,
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            
+            .hero {
+                background: var(--white) !important;
+                color: var(--dark) !important;
+                min-height: auto !important;
+            }
+            
+            .hero h1 {
+                background: none !important;
+                -webkit-text-fill-color: var(--dark) !important;
+                color: var(--dark) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Premium con Glass Effect -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo-container">
+                    <img src="assets/img/logo-casprey.png" alt="Casprey" style="height:60px; width:auto;">
+                    <div class="logo-text">
+                        <div class="logo-title">Casprey</div>
+                        <div class="logo-subtitle">Technology</div>
+                    </div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Inicio</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#team">Equipo</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#portfolio">Portafolio</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                
+                <a href="#contact" class="contact-btn">
+                    <i class="fas fa-comment-dots"></i> Cotizar
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" data-aos="fade-in" data-aos-duration="1000">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-aos="fade-up" data-aos-delay="200">Soluciones Tecnológicas Premium</h1>
+                <p data-aos="fade-up" data-aos-delay="400">Especialistas corporativos en ensamble de equipos tecnológicos, mantenimiento, venta de tecnología, administración de servidores, bases de datos SQL, cámaras de seguridad IP y soluciones IT integrales.</p>
+                
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-cogs"></i> Explorar Servicios
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-headset"></i> Contacto Inmediato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Servicios Corporativos</h2>
+                <p>Soluciones tecnológicas de nivel empresarial diseñadas para optimizar procesos, aumentar productividad y garantizar seguridad total.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Ensamble de Equipos Tecnológicos</h3>
+                        <p>Configuraciones personalizadas de alto rendimiento para empresas, estudios profesionales y centros de datos. Componentes de última generación con garantía extendida.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Mantenimiento Corporativo</h3>
+                        <p>Servicio técnico especializado 24/7 con planes de mantenimiento preventivo y correctivo. Soporte remoto y presencial con tiempos de respuesta garantizados.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Distribución Tecnológica</h3>
+                        <p>Partnership con principales fabricantes para ofrecer hardware, software y soluciones empresariales a precios competitivos con soporte técnico incluido.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Infraestructura de Servidores</h3>
+                        <p>Diseño, implementación y administración de infraestructura de servidores físicos y virtuales. Alta disponibilidad, backup automatizado y monitoreo 24/7.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Bases de Datos SQL Enterprise</h3>
+                        <p>Optimización, administración y consultoría de bases de datos SQL Server, MySQL, PostgreSQL. Migraciones, réplicas y soluciones de alta performance.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Seguridad IP Corporativa</h3>
+                        <p>Sistemas de videovigilancia empresarial con análisis inteligente, control de accesos y monitoreo centralizado. Soluciones On-Premise y Cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Liderazgo Ejecutivo</h2>
+                <p>Nuestro equipo directivo combina experiencia técnica con visión estratégica para ofrecer soluciones de clase mundial.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Felix Rodriguez</h3>
+                    <span class="team-position">Director de Seguridad IT</span>
+                    <p>15+ años en ciberseguridad empresarial. Certificaciones CISSP, CEH, Security+. Experto en arquitecturas de seguridad y compliance regulatorio.</p>
+                </div>
+                
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Johan Piron</h3>
+                    <span class="team-position">Director de Desarrollo IT</span>
+                    <p>Líder en transformación digital y arquitectura de soluciones. Especialista en microservicios, cloud computing y aplicaciones empresariales escalables.</p>
+                </div>
+                
+                <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Bryan Hiciano</h3>
+                    <span class="team-position">Director de Infraestructura</span>
+                    <p>Experto en redes empresariales, data centers y conectividad global. Certificaciones CCNP, VMware, AWS Solutions Architect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>Casprey Technology</h2>
+                    <p>Con más de 12 años de trayectoria, nos hemos posicionado como el partner tecnológico preferido de empresas que buscan innovación, seguridad y resultados medibles.</p>
+                    <p>Nuestra metodología se basa en entender el core business de cada cliente para desarrollar soluciones tecnológicas que generen ventajas competitivas sostenibles.</p>
+                    <p>Operamos bajo los más altos estándares de calidad, con certificaciones internacionales y un equipo multidisciplinario que domina las últimas tecnologías del mercado.</p>
+                    
+                    <div style="margin-top: 4rem;">
+                        <a href="#contact" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-handshake"></i> Agenda una Consultoría
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="about-image" data-aos="fade-left" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Centro de Operaciones Casprey" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Casos de Éxito</h2>
+                <p>Proyectos corporativos donde hemos implementado soluciones tecnológicas que transformaron operaciones y generaron ROI significativo.</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Center Corporativo" loading="lazy">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Data Center Empresarial</h3>
+                        <p>Migración completa de infraestructura para grupo financiero. Implementación de virtualización, alta disponibilidad y backup automatizado.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sistema de Seguridad" loading="lazy">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Sistema de Seguridad Integral</h3>
+                        <p>Implementación de videovigilancia IP con 64 cámaras, control de accesos biométrico y monitoreo centralizado para cadena retail internacional.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Infraestructura Cloud" loading="lazy">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Transformación Cloud</h3>
+                        <p>Migración a infraestructura híbrida para empresa de manufactura. Optimización de costos en 35% y mejora de performance en 60%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Contacto Corporativo</h2>
+                <p>¿Listo para transformar su infraestructura tecnológica? Nuestro equipo ejecutivo está preparado para entender sus necesidades y proponer soluciones a medida.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Oficinas Centrales</h4>
+                            <p>Torre Corporativa Tecnológica<br>Av. Digital #1500, Piso 25<br>Zona Financiera, Ciudad</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Teléfono Corporativo</h4>
+                            <p>+1 (888) 456-7890<br>Línea directa ejecutiva</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Corporativo</h4>
+                            <p>corporativo@casprey.tech<br>Respuesta en menos de 2 horas hábiles</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="400">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horario Ejecutivo</h4>
+                            <p>Lunes a Viernes: 7:00 AM - 8:00 PM<br>Sábados: 9:00 AM - 2:00 PM<br>Emergencias 24/7</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Nombre completo *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Correo corporativo *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="Teléfono corporativo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="company" placeholder="Empresa *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="service" required>
+                                <option value="" disabled selected>Seleccione servicio de interés *</option>
+                                <option value="ensamble">Ensamble de Equipos Tecnológicos</option>
+                                <option value="mantenimiento">Mantenimiento Corporativo</option>
+                                <option value="venta">Distribución Tecnológica</option>
+                                <option value="servidores">Infraestructura de Servidores</option>
+                                <option value="sql">Bases de Datos SQL Enterprise</option>
+                                <option value="seguridad">Seguridad IP Corporativa</option>
+                                <option value="consultoria">Consultoría IT Integral</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Describa su proyecto o necesidad *" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitud Corporativa
+                        </button>
+                        
+                        <div class="form-status" id="formStatus"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-text">
+                            <div class="footer-logo-title">Casprey</div>
+                            <div class="footer-logo-subtitle">Technology</div>
+                        </div>
+                    </div>
+                    <p>Partner tecnológico corporativo especializado en soluciones IT integrales, seguridad empresarial y transformación digital con resultados garantizados.</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                        <li><a href="#team"><i class="fas fa-chevron-right"></i> Equipo</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+                        <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portafolio</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-services">
+                    <h3>Servicios Premium</h3>
+                    <ul>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Ensamble Corporativo</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Mantenimiento 24/7</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Infraestructura Server</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Bases de Datos SQL</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Seguridad IP</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Consultoría IT</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Casprey Technology - Soluciones Tecnológicas Corporativas. Todos los derechos reservados.</p>
+                <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.7;">Certificaciones: ISO 27001, ISO 9001, Microsoft Gold Partner, AWS Advanced Consulting Partner</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Button -->
+    <a href="https://admin.casprey.tech" class="admin-panel-btn" target="_blank" title="Panel Administrativo">
+        <i class="fas fa-cog"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop" title="Volver al inicio">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- EmailJS Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Initialize AOS Animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add active class to nav links on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+        const header = document.getElementById('header');
+        
+        function updateActiveNavLink() {
+            let current = '';
+            const scrollPosition = window.pageYOffset + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksItems.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            // Update active nav link
+            updateActiveNavLink();
+            
+            // Header background on scroll
+            if(window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if(window.scrollY > 500) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        // Form submission (simplificado para demo)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formStatus = document.getElementById('formStatus');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                formStatus.className = 'form-status success';
+                formStatus.innerHTML = '<i class="fas fa-check-circle"></i> ¡Mensaje enviado correctamente! Nuestro equipo se pondrá en contacto pronto.';
+                formStatus.style.display = 'block';
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                // Re-enable button
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud Corporativa';
+                }, 3000);
+                
+                // Hide status message after 5 seconds
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+        
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActiveNavLink();
+        });
+    </script>
+</body>
+</html>
